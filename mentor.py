@@ -8,9 +8,10 @@ class ManipuladorSimples(BaseHTTPRequestHandler):
         self.send_response(200)
         self.send_header('Content-type', 'text/html')
         self.end_headers()
-
+        
         # Envia dados para o webhook do Make
-        URL_do_webhook = os.getenv('CRIAR_URL_WEBHOOK', '')
+        URL_do_webhook = 'https://hook.us2.make.com/axp36f1x67bdwmvje2h8kfyqgkxea2co'
+        
         if URL_do_webhook:
             try:
                 dados = {
@@ -24,7 +25,7 @@ class ManipuladorSimples(BaseHTTPRequestHandler):
                 status_do_webhook = f"Erro ao enviar webhook: {str(e)}"
         else:
             status_do_webhook = "URL do webhook não definido"
-
+        
         chave_api = os.getenv("ABRIR_CHAVE_API", "não definido")
         mensagem = f"""
         <html>
